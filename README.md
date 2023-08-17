@@ -1,6 +1,34 @@
 # openvpn-monitor
 
 
+## Changes
+
+This fork has some modifications (written in a hurry) so that the script returns data from open-vpn as json format when we pass a get_json parameter through GET or POST methods. This helps us with an automation tool - Xala.
+
+Usage example:
+```
+http://10.8.0.1:9090/?get_json=1
+curl -d "get_json=1" -X POST "10.8.0.1:9090"
+```
+
+Response example:
+```
+{
+"d8b0000000ea" : "10.8.0.1",
+"b82000000069" : "10.8.0.2",
+"b04000000096" : "10.8.0.3",
+"d8b0000000df" : "10.8.0.4",
+"d8c000000092" : "10.8.0.5",
+"d8b0000000cb" : "10.8.0.6",
+"d8b000000088" : "10.8.0.7"
+}
+```
+
+You can do the normal script installation then replace the openvpn-monitor.py file in the system.
+
+e.g in Ubuntu 20.04 using the gunicorn installation, replace ``/usr/local/lib/python3.8/dist-packages/openvpn-monitor.py``
+then restart the service ``sudo service openvpn-monitor restart``
+
 ## Summary
 
 openvpn-monitor is a simple python program to generate html that displays the
